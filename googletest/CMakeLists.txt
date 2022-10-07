@@ -13,7 +13,7 @@
 option(
   gtest_force_shared_crt
   "Use shared (DLL) run-time lib even when Google Test is built as static lib."
-  OFF)
+  ON)
 
 option(gtest_build_tests "Build all of gtest's own tests." OFF)
 
@@ -119,6 +119,21 @@ include_directories(${gtest_build_include_dirs})
 #
 # Defines the gtest & gtest_main libraries.  User tests should link
 # with one of them.
+
+#OrenG skipped this code , and turned ON option: gtest_force_shared_crt instead....
+##SET MSVC_RUNTIME_LIBRARY TO /MD
+#if( CMAKE_CXX_COMPILER_ID STREQUAL "MSVC" )
+#  if (CMAKE_BUILD_TYPE MATCHES Debug)
+#    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MDd")
+#    message("CMAKE_CXX_FLAGS_DEBUG:  ${CMAKE_CXX_FLAGS_DEBUG}")
+#  elseif(CMAKE_BUILD_TYPE MATCHES Release)
+#    set(CMAKE_CXX_FLAGS_RELEASE  "${CMAKE_CXX_FLAGS_RELEASE} /MD")
+#    message("CMAKE_CXX_FLAGS_RELEASE:  ${CMAKE_CXX_FLAGS_RELEASE}")
+#
+#  endif()
+#endif( CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+
+
 
 # Google Test libraries.  We build them using more strict warnings than what
 # are used for other targets, to ensure that gtest can be compiled by a user
